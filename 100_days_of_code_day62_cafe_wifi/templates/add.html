@@ -1,0 +1,80 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block styles %}
+{{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-left: 15px">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <!-- This is where your WTForm will go -->
+        <form method="post" action="{{ url_for('add_cafe') }}" novalidate>
+          {{ form.csrf_token }}
+
+          <p>
+          {{ form.cafe.label }} <br> {{ form.cafe(size=80) }}
+            {% for err in form.cafe.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+          </p>
+
+          <p>
+          {{ form.location.label }} <br> {{ form.location(size=80) }}
+            {% for err in form.location.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+          </p>
+
+          <p>
+          {{ form.open_time.label }} <br> {{ form.open_time(size=80) }}
+            {% for err in form.open_time.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+          </p>
+
+          <p>
+          {{ form.close_time.label }} <br> {{ form.close_time(size=80) }}
+            {% for err in form.close_time.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+          </p>
+
+          <p>
+          {{ form.coffee_rating.label }} <br> {{ form.coffee_rating(size=1) }}
+            {% for err in form.coffee_rating.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+          </p>
+
+          <p>
+          {{ form.wifi_strength_rating.label }} <br> {{ form.wifi_strength_rating(size=1) }}
+            {% for err in form.wifi_strength_rating.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+          </p>
+
+          <p>
+          {{ form.power_socket_rating.label }} <br> {{ form.power_socket_rating(size=1) }}
+            {% for err in form.power_socket_rating.errors %}
+            <span style="color:red">{{ err }}</span>
+            {% endfor %}
+          </p>
+
+          {{ form.submit }}
+
+        </form>
+
+	  <p class="space-above"><a href="{{ url_for('cafes') }}">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
